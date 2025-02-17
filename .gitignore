@@ -1,4 +1,4 @@
 /out
 docker-compose.yml
-Docker
+Dockerfile
 hospital-app.jar

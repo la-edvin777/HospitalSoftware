@@ -42,7 +42,7 @@ public class PatientDAO {
                 if (rs.next()) {
                     patient = new Patient(
                         rs.getInt("patient_id"),
-                        rs.getString("first_name"),
+                        rs.getString("firstname"),
                         rs.getString("surname"),
                         rs.getString("postcode"),
                         rs.getString("address"),
@@ -103,7 +103,7 @@ public class PatientDAO {
             while (rs.next()) {
                 Patient patient = new Patient(
                     rs.getInt("patient_id"),
-                    rs.getString("first_name"),
+                    rs.getString("firstname"),
                     rs.getString("surname"),
                     rs.getString("postcode"),
                     rs.getString("address"),

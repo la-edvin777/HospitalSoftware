@@ -6,7 +6,6 @@ import com.example.hospital.model.Visit;
 import com.example.hospital.util.DBConnection;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,12 +42,12 @@ public class VisitDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     // In a real system, you’d retrieve the Doctor and Patient from their DAOs
-                    Doctor doctorPlaceholder = new Doctor(rs.getInt("doctor_id"), "", "", "", "");
-                    Patient patientPlaceholder = new Patient(rs.getInt("patient_id"), "", "");
+                    Doctor doctorPlaceholder = new Doctor(rs.getInt("doctorid"), "", "", "", "");
+                    Patient patientPlaceholder = new Patient(rs.getInt("patientid"), "", "");
 
                     visit = new Visit(
                         rs.getInt("visit_id"),
-                        rs.getDate("date_of_visit").toLocalDate(),
+                        rs.getDate("dateofvisit").toLocalDate(),
                         rs.getString("symptoms"),
                         rs.getString("diagnosis"),
                         doctorPlaceholder,
@@ -105,12 +104,12 @@ public class VisitDAO {
 
             while (rs.next()) {
                 // Minimal placeholders; normally you'd fetch from DoctorDAO/PatientDAO
-                Doctor doctorPlaceholder = new Doctor(rs.getInt("doctor_id"), "", "", "", "");
-                Patient patientPlaceholder = new Patient(rs.getInt("patient_id"), "", "");
+                Doctor doctorPlaceholder = new Doctor(rs.getInt("doctorid"), "", "", "", "");
+                Patient patientPlaceholder = new Patient(rs.getInt("patientid"), "", "");
 
                 Visit visit = new Visit(
                     rs.getInt("visit_id"),
-                    rs.getDate("date_of_visit").toLocalDate(),
+                    rs.getDate("dateofvisit").toLocalDate(),
                     rs.getString("symptoms"),
                     rs.getString("diagnosis"),
                     doctorPlaceholder,

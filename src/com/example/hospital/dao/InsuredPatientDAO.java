@@ -11,7 +11,7 @@ public class InsuredPatientDAO {
 
     // CREATE
     public void insertInsuredPatient(InsuredPatient ip) {
-        String sql = "INSERT INTO insured_patients (patient_id, first_name, surname, postcode, address, phone, email, "
+        String sql = "INSERT INTO insured_patient (patient_id, first_name, surname, postcode, address, phone, email, "
                    + "insurance_type, insurance_company, duration_of_insurance) "
                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();

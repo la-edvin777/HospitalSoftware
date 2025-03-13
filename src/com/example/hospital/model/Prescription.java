@@ -1,8 +1,6 @@
-
 package com.example.hospital.model;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Prescription {
     private int prescriptionId;
@@ -11,24 +9,30 @@ public class Prescription {
     private String duration;
     private String comment;
 
-    // Potential association to a Patient, or just a patientId
-    private Patient patient;
+    // Single references
+    private int doctorId;  // or a Doctor object
+    private int patientId; // or a Patient object
+    private int drugId;    // or a Drug object
 
-    // One prescription can include multiple drugs
-    private List<Drug> drugs;
-
-    public Prescription(int prescriptionId, LocalDate dateOfPrescribe, String dosage, 
-                        String duration, String comment, Patient patient, List<Drug> drugs) {
+    public Prescription(int prescriptionId,
+                        LocalDate dateOfPrescribe,
+                        String dosage,
+                        String duration,
+                        String comment,
+                        int doctorId,
+                        int patientId,
+                        int drugId) {
         this.prescriptionId = prescriptionId;
         this.dateOfPrescribe = dateOfPrescribe;
         this.dosage = dosage;
         this.duration = duration;
         this.comment = comment;
-        this.patient = patient;
-        this.drugs = drugs;
+        this.doctorId = doctorId;
+        this.patientId = patientId;
+        this.drugId = drugId;
     }
 
-    // Getters and Setters
+    // Getters and setters
     public int getPrescriptionId() {
         return prescriptionId;
     }
@@ -69,19 +73,18 @@ public class Prescription {
         this.comment = comment;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public int getDoctorId() {
+        return doctorId;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+
+    public int getPatientId() {
+        return patientId;
     }
 
-    public List<Drug> getDrugs() {
-        return drugs;
+
+    public int getDrugId() {
+        return drugId;
     }
 
-    public void setDrugs(List<Drug> drugs) {
-        this.drugs = drugs;
-    }
 }

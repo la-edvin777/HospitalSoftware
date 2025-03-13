@@ -72,7 +72,7 @@ public class DoctorDAO {
 
     // DELETE
     public void deleteDoctor(int id) {
-        String sql = "DELETE FROM doctors WHERE doctor_id = ?";
+        String sql = "DELETE FROM doctors WHERE doctorID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -95,7 +95,7 @@ public class DoctorDAO {
             while (rs.next()) {
                 Doctor doctor = new Doctor(
                     rs.getInt("doctor_id"),
-                    rs.getString("first_name"),
+                    rs.getString("firstname"),
                     rs.getString("surname"),
                     rs.getString("address"),
                     rs.getString("email")

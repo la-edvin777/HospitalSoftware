@@ -39,7 +39,7 @@ public class DrugDAO {
                     drug = new Drug(
                         rs.getInt("drug_id"),
                         rs.getString("name"),
-                        rs.getString("side_effects"),
+                        rs.getString("sideeffects"),
                         rs.getString("benefits")
                     );
                 }
@@ -93,7 +93,7 @@ public class DrugDAO {
                 Drug drug = new Drug(
                     rs.getInt("drug_id"),
                     rs.getString("name"),
-                    rs.getString("side_effects"),
+                    rs.getString("sideeffects"),
                     rs.getString("benefits")
                 );
                 drugs.add(drug);

@@ -6,8 +6,6 @@ import com.example.hospital.util.DBConnection;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
@@ -548,19 +546,37 @@ public class MainApp extends JFrame {
         String comment = JOptionPane.showInputDialog(this, "Enter Comment:", "Add Prescription",
                 JOptionPane.QUESTION_MESSAGE);
 
-        // Minimal approach: we just prompt for patientId and assume we create placeholders:
-        String patientIdStr = JOptionPane.showInputDialog(this, "Enter Patient ID for this prescription:",
-                "Add Prescription", JOptionPane.QUESTION_MESSAGE);
-        int patientId = parseIntOrFail(patientIdStr);
-        Patient pat = new Patient(patientId, "PlaceholderF", "PlaceholderS");
+        // Prompt for doctor ID
+        String docIdStr = JOptionPane.showInputDialog(this, "Enter Doctor ID:", "Add Prescription",
+                JOptionPane.QUESTION_MESSAGE);
+        int docId = parseIntOrFail(docIdStr);
 
-        // For the drugs, let's just create an empty list:
-        List<Drug> drugList = new ArrayList<>();
+        // Prompt for patient ID
+        String patientIdStr = JOptionPane.showInputDialog(this, "Enter Patient ID:", "Add Prescription",
+                JOptionPane.QUESTION_MESSAGE);
+        int patId = parseIntOrFail(patientIdStr);
 
-        Prescription p = new Prescription(presId, date, dosage, duration, comment, pat, drugList);
+        // Prompt for drug ID
+        String drugIdStr = JOptionPane.showInputDialog(this, "Enter Drug ID:", "Add Prescription",
+                JOptionPane.QUESTION_MESSAGE);
+        int drugId = parseIntOrFail(drugIdStr);
+
+        // Construct single-Drug prescription
+        Prescription p = new Prescription(
+                presId,    // prescriptionId
+                date,      // dateOfPrescribe
+                dosage,
+                duration,
+                comment,
+                docId,     // doctor ID
+                patId,     // patient ID
+                drugId     // single drug ID
+        );
+
         prescriptionDAO.insertPrescription(p);
-        JOptionPane.showMessageDialog(this, "Prescription added successfully (no drugs linked yet).");
+        JOptionPane.showMessageDialog(this, "Prescription added successfully!");
     }
+
 
     private void addDrug() {
         String drugIdStr = JOptionPane.showInputDialog(this, "Enter Drug ID:", "Add Drug",
@@ -681,8 +697,6 @@ public class MainApp extends JFrame {
               .append(", Date: ").append(p.getDateOfPrescribe())
               .append(", Dosage: ").append(p.getDosage())
               .append(", Duration: ").append(p.getDuration())
-              .append(", PatientID: ").append(p.getPatient().getPatientId())
-              .append(", Drugs#: ").append(p.getDrugs().size())
               .append("\n");
         }
         return sb.toString();
